@@ -78,9 +78,9 @@
 			<version>1.1</version> <systemPath>${basedir}/src/main/resources/lib/WolframAlpha-1.1.jar</systemPath> 
 			<scope>system</scope> </dependency -->
 	</dependencies>
-	<description>HackerRank Toolkit provides a tool set for HackerRank Sign-up Beta. This is made public to aid those who have a little time to write their own API wrappers in order to build their bots for new challenges. It's written in Java and designed to be customized.It's created and currently maintained by Hiroshi Yamamoto (higon). Anyone is welcome to join.
+	<description>HackerRank Lib provides a tool set for HackerRank Sign-up Beta. This is made public to aid those who have a little time to write their own API wrappers in order to build their bots for new challenges. It's written in Java and designed to be customized.It's created and currently maintained by Hiroshi Yamamoto (higon). Anyone is welcome to join.
 
-The toolkit includes:
+The kit includes:
 
 * API Wrappers and Utilities
     * HackerRankAPI

@@ -1,9 +1,9 @@
-[HackerRank Toolkit](http://hyamamoto.github.com/hackerrank-toolkit), API Wrappers and Bots for HackerRank
+[HackerRank Lib](http://hyamamoto.github.com/hackerrank-core), API Wrappers and Bots for HackerRank
 ==================
 
-HackerRank Toolkit provides a small tool set for HackerRank Sign-up Beta. This is made to aid those who have small time to write their own API wrapper to build their bot for new challenges. It's written in Java 6 and tested on Mac OS X Lion, Gentoo Linux and Windows 7. It's currently used and maintained by [higon](https://github.com/hyamamoto/hackerrank-core). Anyone is welcome to hack.
+HackerRank Lib provides a small tool set for HackerRank Sign-up Beta. This is made to aid those who have small time to write their own API wrapper to build their bot for new challenges. It's written in Java 6 and tested on Mac OS X Lion, Gentoo Linux and Windows 7. It's currently used and maintained by [higon](https://github.com/hyamamoto/hackerrank-core). Anyone is welcome to hack.
 
-The toolkit includes:
+This kit includes:
 
 * API Wrappers and Utilities
     * HackerRankAPI

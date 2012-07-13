@@ -1,7 +1,7 @@
 [HackerRank Toolkit](http://hyamamoto.github.com/hackerrank-toolkit), API Wrappers and Bots for HackerRank
 ==================
 
-HackerRank Toolkit provides a small tool set for HackerRank Sign-up Beta. This is made to aid those who have small time to write their own API wrapper to build their bot for new challenges. It's written in Java 6 and tested on Mac OS X Lion, Linux (Gentoo) and Windows 7. It's currently used and maintained by [higon](https://github.com/hyamamoto/). Anyone is welcome to join.
+HackerRank Toolkit provides a small tool set for HackerRank Sign-up Beta. This is made to aid those who have small time to write their own API wrapper to build their bot for new challenges. It's written in Java 6 and tested on Mac OS X Lion, Linux (Gentoo) and Windows 7. It's currently used and maintained by [higon](https://github.com/hyamamoto/hackerrank-core). Anyone is welcome to join.
 
 The toolkit includes:
 
@@ -28,7 +28,7 @@ Quick Start (How to run)
 
 There are only two ways to run.
 
-1. Buy [( 7 + 8 + 9 + ... + 2559 + 2560)](https://google.com/search?q=(1%2F2)*(2560*(2560%2B1)-6*(6%2B1))) reasonably priced candies from Sam's.
+1. Buy [( 7 + 8 + 9 + ... + 2559 + 2560)](https://google.com/search?q=(1%2F2\)*(2560*(2560%2B1\)-6*(6%2B1)\)) reasonably priced candies from Sam's.
 2. Simulate and solve all the Candies games on a table with your girlfriend joyfully.
 3. Travel somewhere in the middle of PRC.
 4. Employ 100 labors.
@@ -39,7 +39,7 @@ There are only two ways to run.
 or
 
 1. Clone the repo and build.
-(Alternatively, you can just [download the zipball](https://github.com/hyamamoto/hackerrank-core).)  
+(Alternatively, you can just [download the zipball](https://github.com/hyamamoto/hackerrank-core/downloads).)  
     $ git clone git://github.com/hyamamoto/hackerrank-core.git  
     $ mvn install  
     $ cd target  
@@ -65,7 +65,7 @@ HackerRank API Wrappers
     Class    : jp.freepress.hackerrank.splash.SplashAPI  
     Includes : Calls for Candies and SpaceX.  
 
-See [SampleMain.java](https://github.com/hyamamoto/hackerrank-core/raw/master/src/main/java/jp/freepress/hackerrank/SampleMain.java) for some actual code.
+See [SampleMain.java](https://github.com/hyamamoto/hackerrank-core/blob/master/src/main/java/jp/freepress/hackerrank/SampleMain.java) for some actual code.
 
 
 Bots

@@ -1,7 +1,7 @@
 [HackerRank Toolkit](http://hyamamoto.github.com/hackerrank-toolkit), API Wrappers and Bots for HackerRank
 ==================
 
-HackerRank Toolkit provides a small tool set for HackerRank Sign-up Beta. This is made to aid those who have small time to write their own API wrapper to build their bot for new challenges. It's written in Java 6 and tested on Mac OS X Lion, Linux (Gentoo) and Windows 7. It's currently used and maintained by [higon](https://github.com/hyamamoto/hackerrank-core). Anyone is welcome to join.
+HackerRank Toolkit provides a small tool set for HackerRank Sign-up Beta. This is made to aid those who have small time to write their own API wrapper to build their bot for new challenges. It's written in Java 6 and tested on Mac OS X Lion, Gentoo Linux and Windows 7. It's currently used and maintained by [higon](https://github.com/hyamamoto/hackerrank-core). Anyone is welcome to hack.
 
 The toolkit includes:
 
@@ -65,7 +65,7 @@ HackerRank API Wrappers
     Class    : jp.freepress.hackerrank.splash.SplashAPI  
     Includes : Calls for Candies and SpaceX.  
 
-See [SampleMain.java](https://github.com/hyamamoto/hackerrank-core/blob/master/src/main/java/jp/freepress/hackerrank/SampleMain.java) for some actual code.
+See [SampleMain.java](https://github.com/hyamamoto/hackerrank-core/blob/master/src/main/java/jp/freepress/hackerrank/SampleMain.java) or [SampleApp.scala](https://github.com/hyamamoto/hackerrank-core/blob/master/misc/scala-experiment/SampleApp.scala) for actual code.
 
 
 Bots
@@ -125,7 +125,7 @@ Usage:
 License
 -------
 
-All source code and experimental distributable files including supplemental libraries are released as an open source software under Apache Public License, version 2.0.
+All source code and experimental distributable files are released as an open source software under Apache Public License, version 2.0.
 
 
 Happy Hacking! **:D**

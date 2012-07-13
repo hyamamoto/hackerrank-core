@@ -91,7 +91,7 @@ Name      : **SpaceX bot**
 Main class: jp.freepress.hackerrank.SplashSpaceXMain  
 Description: This is a SpaceX game solver.
 
-This rotate encrypted texts, brute-forces to decipher the most of the questions the Scientist has asked without any supplemental information. Note that you need to get [Wolfram*Alpha](http://products.wolframalpha.com/api/) APPID and specify "-waId {APPID}" command line argument if you are to challenge later than 11000th problem. This bot runs unreliably from #10001 to #11100 when you get an error, you might make some changes on source code or solve unsolvable by hand. 
+This bot rotates encrypted texts and brute-forces to decipher the most of questions a Scientist asks without any supplemental information. This bot sometimes stops when it's processing the problems from #10000 to #11100. Whwn you find the bot has stopped on a certain problem, you may need to run the bot on the problem later or solve it by hand. Note that you need to get [Wolfram*Alpha](http://products.wolframalpha.com/api/) APPID and specify "-waId {APPID}" command line argument if you are to challenge later than 11000th problem. 
 
 Usage:
 

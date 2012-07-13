@@ -28,7 +28,7 @@ Quick Start (How to run)
 
 There are only two ways to run.
 
-1. Buy [( 7 + 8 + 9 + ... + 2559 + 2560)](https://google.com/search?q=(1%2F2\)*(2560*(2560%2B1\)-6*(6%2B1)\)) reasonably priced candies from Sam's.
+1. Buy [( 7 + 8 + 9 + ... + 2559 + 2560)](https://google.com/search?q=(1%2F2\)*(2560*(2560%2B1\)-6*(6%2B1\)\)) reasonably priced candies from Sam's.
 2. Simulate and solve all the Candies games on a table with your girlfriend joyfully.
 3. Travel somewhere in the middle of PRC.
 4. Employ 100 labors.

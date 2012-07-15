@@ -1,7 +1,7 @@
 [HackerRank Lib](http://hyamamoto.github.com/hackerrank-core), API Wrappers and Bots for HackerRank
 ==================
 
-HackerRank Lib provides a small tool set for HackerRank Sign-up Beta. This is made to aid those who have small time to write their own API wrapper to build their bot for new challenges. It's written in Java 6 and tested on Mac OS X Lion, Gentoo Linux and Windows 7. It's currently used and maintained by [higon](https://github.com/hyamamoto/hackerrank-core). Anyone is welcome to hack.
+HackerRank Lib provides a small tool set for HackerRank Sign-up Beta. This is made to aid those who have small time to write their own API wrapper to build their bot for new challenges. It's written in Java 6 and tested on Mac OS X Lion, Gentoo Linux and Windows 7. It's currently used and maintained by [higon](https://github.com/hyamamoto/hackerrank-core). Anyone is welcome to join.
 
 This kit includes:
 
@@ -18,7 +18,7 @@ This kit includes:
 What Is HackerRank?
 -------------------
 
-HackerRank is new fun site you can play with. Basically it's a little coding competition site. Most exciting thing about HackerRank is that it has "Hack" on its name. So we can rationally safely assume we can hack their servers at will, can we.
+HackerRank is a new website you can play with. Basically it's a little coding competition site. Most exciting thing about HackerRank is that it has "Hack" on its name. So we can rationally safely assume we can hack their servers at will, can we.
 
 Check out [their site](https://www.hackerrank.com/) for more detail.
 
@@ -47,11 +47,11 @@ or
 2. Create an account on [HackerRank](https://www.hackerrank.com/). In this example, let's say you took a user "Mariacchi".
 3. Run a SpaceX bot, then leave your machine for 4+ hours.  
     $ cd hackerrank-toolkit/bin  	
-    $ ./splash\_spacex -U Mariacchi -from 1 -to 10000 ( or .\\splash\_spacex.bat on Windows )  
+    $ ./splash\_spacex -U Mariacchi -from 1 -to 11100 ( or .\\splash\_spacex.bat on Windows )  
 4. Run a Candies bot then leave your machine for 12+ hours.  
     $ ./splash\_candies -U Mariacchi -from 1 -to 2560 ( or .\\splash\_candies.bat on Windows )
 
-... So you see exceptions? Of course you can give me candies I can fix them. 
+... So you see exceptions? Of course you can give me [candies](https://github.com/hyamamoto/hackerrank-core/issues) so that I can fix them. 
 
 
 HackerRank API Wrappers
@@ -91,7 +91,7 @@ Name      : **SpaceX bot**
 Main class: jp.freepress.hackerrank.SplashSpaceXMain  
 Description: This is a SpaceX game solver.
 
-This bot rotates encrypted texts and brute-forces to decipher the most of questions a Scientist asks without any supplemental information. This bot sometimes stops when it's processing the problems from #10000 to #11100. Whwn you find the bot has stopped on a certain problem, you may need to run the bot on the problem later or solve it by hand. Note that you need to get [Wolfram*Alpha](http://products.wolframalpha.com/api/) APPID and specify "-waId {APPID}" command line argument if you are to challenge later than 11000th problem. 
+This bot rotates encrypted texts and brute-forces to decipher the most of questions a Scientist asks without any supplemental information. This bot sometimes stops when it's processing the problems from #10000 to #11100. When you find the bot has stopped on a certain problem, you may need to run the bot again on the problem later or solve it by hand. Note that you need to get [Wolfram*Alpha](http://products.wolframalpha.com/api/) APPID and specify "-waId {APPID}" command line argument if you are to challenge later than 11000th problem. 
 
 Usage:
 

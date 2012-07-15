@@ -8,29 +8,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * List of obscurely long word list ( a lot of -phobia) from a word list, "ListOfPhobia.txt".<br/>
+ * List of country names from a word list, "ListOfCountryNames.txt".<br/>
  * 
  * @author Hiroshi Yamamoto
  */
-public class Searcher_ListOfPhobia implements WordList {
+public class Searcher_ListOfCountryNames implements WordList {
 
-  private List<String> phobiaList;
+  private List<String> wordList;
 
   @Override
   public boolean isSetup() {
-    return phobiaList != null;
+    return wordList != null;
   }
 
   @Override
   public void setupList() {
-    phobiaList = new ArrayList<String>();
-    InputStream stream = Searcher_ListOfPhobia.class.getResourceAsStream("ListOfPhobia.txt");
+    wordList = new ArrayList<String>();
+    InputStream stream = Searcher_ListOfCountryNames.class.getResourceAsStream("ListOfCountryNames.txt");
     BufferedReader br = new BufferedReader(new InputStreamReader(stream));
     String strLine;
     int wordCount = 0;
     try {
       while ((strLine = br.readLine()) != null) {
-        phobiaList.add(strLine);
+        wordList.add(strLine);
         wordCount++;
         // System.out.println (strLine);
       }
@@ -38,17 +38,17 @@ public class Searcher_ListOfPhobia implements WordList {
       e.printStackTrace();
     }
 
-    System.out.println("ListOfPhobia Loaded: " + wordCount + " entries");
+    System.out.println("ListOfCountryNames Loaded: " + wordCount + " entries");
   }
 
   @Override
   public List<String> getList() {
-    return phobiaList;
+    return wordList;
   }
 
   public static void main(String[] args) {
 
-    Searcher_ListOfPhobia searcher = new Searcher_ListOfPhobia();
+    Searcher_ListOfCountryNames searcher = new Searcher_ListOfCountryNames();
     searcher.setupList();
     List<String> wordlist = searcher.getList();
     for (String word : wordlist) {

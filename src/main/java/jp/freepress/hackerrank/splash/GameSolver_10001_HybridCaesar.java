@@ -85,7 +85,7 @@ public class GameSolver_10001_HybridCaesar implements Solver<GameProblem, GameAn
       return new GameAnswer(true, decodedTextAsPhobiaName, -1);
     }
 
-    // Not I have to find the answer
+    // Not in my dictionary. I have to find the answer by actually solving it.
 
     String fact_question;
     String fact_answer;
@@ -184,8 +184,8 @@ public class GameSolver_10001_HybridCaesar implements Solver<GameProblem, GameAn
 
   private String blindPoormenWillfullyDecode(String text) {
 
-    // code beyond this line will not be executed if I have a perfect word list.
-    // these are code to find and add a new word temporary.
+    // Code beyond this line will not be executed if I have a perfect word list.
+    // This method is for a new word discovery. Add a hint here temporary.
 
     Map<String, String> map = new HashMap<String, String>();
     // Comment out if we have more hint for special conversion
@@ -305,46 +305,3 @@ public class GameSolver_10001_HybridCaesar implements Solver<GameProblem, GameAn
 
   }
 }
-
-// NOTE:
-//
-// // 103
-// fact_answer = "nine thousand, seven hundred and twenty";
-// cph_answer = "gbgx mahnltgw, lxoxg angwkxw tgw mpxgmr";
-// map.put( fact_answer, cph_answer);
-//
-// // 2271
-// fact_answer = "seven thousand, four hundred and ninety-nine";
-// cph_answer = "tfwfo uipvtboe, gpvs ivoesfe boe ojofuz-ojof";
-// map.put( fact_answer, cph_answer);
-//
-// // 2872
-// fact_answer = "four thousand, eight hundred and eighty-six";
-// cph_answer = "qzfc eszfdlyo, ptrse sfyocpo lyo ptrsej-dti";
-// map.put( fact_answer, cph_answer);
-//
-// // 3816
-// fact_answer = "six thousand, six hundred and thirteen";
-// cph_answer = "euj ftagemzp, euj tgzpdqp mzp ftudfqqz";
-// map.put( fact_answer, cph_answer);
-//
-// // 7690
-// fact_answer = "three thousand and sixty-one";
-// cph_answer = "ocmzz ocjpnviy viy ndsot-jiz";
-// map.put( fact_answer, cph_answer);
-//
-// // 8713
-// fact_answer = "one thousand, one hundred and thirty-two";
-// cph_answer = "cbs hvcigobr, cbs vibrfsr obr hvwfhm-hkc";
-// map.put( fact_answer, cph_answer);
-//
-// // 8820
-// fact_answer = "eight hundred and fifty-five";
-// cph_answer = "bfdeq erkaoba xka cfcqv-cfsb";
-// map.put( fact_answer, cph_answer);
-//
-// // 9785
-// fact_answer = "six thousand, eight hundred and seventy-one";
-// cph_answer = "kap lzgmksfv, wayzl zmfvjwv sfv kwnwflq-gfw";
-// map.put( fact_answer, cph_answer);
-//

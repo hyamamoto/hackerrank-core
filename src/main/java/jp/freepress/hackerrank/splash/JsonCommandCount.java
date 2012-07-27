@@ -1,4 +1,4 @@
-package jp.freepress.hackerrank.core;
+package jp.freepress.hackerrank.splash;
 
 // https://www.hackerrank.com/splash/command_count.json
 // {"ls":9,"pwd":1}

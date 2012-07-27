@@ -3,7 +3,6 @@ package jp.freepress.hackerrank.core;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -29,8 +28,6 @@ import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.BasicHttpProcessor;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
-
-import com.google.gson.Gson;
 
 
 /**
@@ -70,15 +67,6 @@ import com.google.gson.Gson;
 public class HackerRankAPI {
 
   public static final String URL_HACKERRANK = "https://www.hackerrank.com";
-  public static final String URL_SIGNIN = URL_HACKERRANK + "/users/sign_in.json";
-  public static final String URL_SIGNUP = URL_HACKERRANK + "/users.json";
-  public static final String URL_SIGNOUT = URL_HACKERRANK
-      + "/users/sign_out?remote=true&commit=Sign+out&utf8=%E2%9C%93";
-  public static final String URL_USERSTATS = URL_HACKERRANK + "/splash/userstats.json";
-  public static final String URL_COMMANDCOUNT = URL_HACKERRANK + "/splash/command_count.json";
-  public static final String URL_LEADERBOARD = URL_HACKERRANK + "/splash/leaderboard.json";
-  public static final String URL_CHALLENGE = URL_HACKERRANK + "/splash/challenge.json";
-  public static final String URL_GAME = URL_HACKERRANK + "/game.json";
 
   protected int lastStatusCode; // concurrency? what's that?
   // be used only on the same thread.
@@ -118,7 +106,7 @@ public class HackerRankAPI {
    * @param methodStr HTTP method name. ex) "GET", "POST", "PUT", "DELETE", etc.
    * @param scale always 1 for normal behavior. {@link HackerRankAPI} class ignores this parameter.
    */
-  protected String send(String url, Map<String, String> param, String methodStr, int scale) {
+  public String send(String url, Map<String, String> param, String methodStr, int scale) {
     HttpRequestBase method = createHttpRequest(url, param, methodStr);
 
     try {
@@ -159,10 +147,12 @@ public class HackerRankAPI {
     // Read the response body.
     HttpEntity entity = response.getEntity();
     byte[] responseBody = EntityUtils.toByteArray(entity);
-
+    
     // Deal with the response.
     // Use caution: ensure correct character encoding and is not binary data
     String responseBodyStr = new String(responseBody);
+    //String responseBodyStr = EntityUtils.toString(entity, "UTF-8");
+    
     return responseBodyStr;
   }
 
@@ -203,7 +193,7 @@ public class HackerRankAPI {
       }
       method.setHeader("Accept", "*/*");
       method.setHeader("Accept-Charset", "ISO-8859-1,utf-8;q=0.7,*;q=0.3");
-      method.setHeader("Accept-Encoding", "gzip,deflate,sdch");
+      method.setHeader("Accept-Encoding", "deflate,sdch");
       method.setHeader("Accept-Language", "en-US,pIqaD,en,ja;q=0.8");
       method.setHeader("Connection", "keep-alive");
       method.setHeader("Origin", "http://www.hackerrank.com");
@@ -217,177 +207,8 @@ public class HackerRankAPI {
     return method;
   }
 
-  /**
-   * Requests sign-in to the server.
-   */
-  public JsonLogin sign_in(String username, String password) {
-    Map<String, String> param = new HashMap<String, String>();
-    {
-      param.put("user[login]", username);
-      param.put("user[remember_me]", "1");
-      param.put("user[password]", password);
-      param.put("commit", "Sign in");
-      param.put("remote", "true");
-      param.put("utf8", "true");
-    }
-    String response = send(URL_SIGNIN, param, "POST", 1);
-    JsonLoginImpl jsonLogin = new Gson().fromJson(response, JsonLoginImpl.class);
-    return jsonLogin;
-  }
 
-  /**
-   * Requests sign-up to the server.
-   */
-  public JsonLogin sign_up(String email, String username, String password) {
-    Map<String, String> param = new HashMap<String, String>();
-    {
-      param.put("remote", "true");
-      param.put("commit", "Sign up");
-      param.put("user[email]", email);
-      param.put("user[username]", username);
-      param.put("user[password]", password);
-      // param.put("utf8", "true");
-    }
-    String response = send(URL_SIGNUP, param, "POST", 1);
-    // Post -> Fail -> 422 Unprocessable Entity
-    // {"errors":{"email":["has already been taken"],"username":["has already been taken"]}}
-    // Post -> Success -> 201 Created
-    // {"created_at":"2012-07-10T07:12:58+05:30","email":"a@a.com","id":00000,"updated_at":"2012-07-10T07:12:59+05:30","username":"a"}
-    // https://www.hackerrank.com/splash/signup_callback.json
-    // GET -> 304 Not Modified
-    // {"share_hash":"disabled"}
-    JsonLoginImpl jsonLogin = new Gson().fromJson(response, JsonLoginImpl.class);
-    return jsonLogin;
-  }
 
-  /**
-   * Requests sign-out to the server.
-   */
-  public String sign_out() {
-    String response = send(URL_SIGNOUT, null, "GET", 1);
-    return response;
-  }
-
-  /**
-   * Retrieves a user status object from the server. <br/>
-   * <i> * It seems that a <code>userstats</code> request causes logout. (2012/07/05)</i>
-   * 
-   * @return A user status object for the current user, or for "guest" user if you haven't sign-in.
-   */
-  public JsonUserStat userstats() {
-    String response = send(URL_USERSTATS, null, "GET", 1);
-    JsonUserStat json = new Gson().fromJson(response, JsonUserStat.class);
-    return json;
-  }
-
-  /**
-   * Retrieves the leader board information from the server.
-   * 
-   * @return A leader board object.
-   */
-  public JsonLeaderBoard leaderboard() {
-    return leaderboard(-1);
-  }
-
-  /**
-   * Retrieves the leader board information from the server.
-   * 
-   * @param limit a limit count. <i>the hard limit on the server looks to be 763. (2012/07/06) </i>
-   * @return A leader board object.
-   */
-  public JsonLeaderBoard leaderboard(int limit) {
-    String url = URL_LEADERBOARD;
-    if (limit > 0) {
-      url += "?limit=" + limit;
-    }
-    String response = send(url, null, "GET", 1);
-    JsonLeaderBoard json = new Gson().fromJson(response, JsonLeaderBoard.class);
-    return json;
-  }
-
-  public JsonCommandCount command_count() {
-    String response = send(URL_COMMANDCOUNT, null, "GET", 1);
-    JsonCommandCount json = new Gson().fromJson(response, JsonCommandCount.class);
-    return json;
-  }
-
-  public <T> T challenge(Class<T> responseClass, int candies) {
-    return challenge(responseClass, Integer.toString(candies));
-  }
-
-  public <T> T challenge(Class<T> responseClass, String candies) {
-    return sendChallenge(URL_CHALLENGE, responseClass, candies);
-  }
-
-  public <T> T challengeAnswer(Class<T> responseClass, int candiesMove) {
-    return challengeAnswer(responseClass, candiesMove, 1);
-  }
-
-  public <T> T challengeAnswer(Class<T> responseClass, int candiesMove, int scale) {
-    Map<String, String> param = new HashMap<String, String>();
-    {
-      param.put("move", Integer.toString(candiesMove));
-      // param.put( "id", game_id);
-      param.put("remote", "true");
-      param.put("utf8", "true");
-    }
-    String response = send(URL_CHALLENGE, param, "PUT", scale);
-    T json = new Gson().fromJson(response, responseClass);
-    return json;
-  }
-
-  public <T> T game(Class<T> responseClass, int candies) {
-    return game(responseClass, Integer.toString(candies));
-  }
-
-  public <T, U extends T> List<T> games(Class<U> responseClass, int candies, int scale) {
-    List<T> gameList = new ArrayList<T>();
-    for (int i = 0; i < scale; i++) {
-      T game = game(responseClass, Integer.toString(candies));
-      if (game != null) {
-        gameList.add(game);
-      }
-    }
-    return gameList;
-  }
-
-  public <T> T game(Class<T> responseClass, String candies) {
-    // "n" : scientist_id,
-    // "remote" : "true"
-    return sendChallenge(URL_GAME, responseClass, candies, 1);
-  }
-
-  public <T> T gameAnswer(Class<T> responseClass, String game_id, String answer) {
-    Map<String, String> param = new HashMap<String, String>();
-    {
-      param.put("answer", answer);
-      param.put("id", game_id);
-      param.put("remote", "false");
-      param.put("utf8", "true");
-    }
-    String response = send(URL_GAME, param, "PUT", 1);
-    // System.err.println(response);
-    T json = new Gson().fromJson(response, responseClass);
-    return json;
-  }
-
-  // "n" : scientist_id,
-  // "remote" : "true"
-  protected <T> T sendChallenge(String url, Class<T> responseClass, String candies, int scale) {
-    Map<String, String> param = new HashMap<String, String>();
-    {
-      param.put("n", candies);
-      param.put("remote", "true");
-      // param.put( "utf8", "true");
-    }
-    String response = send(url, param, "POST", scale);
-    T json = new Gson().fromJson(response, responseClass);
-    return json;
-  }
-
-  public <T> T sendChallenge(String url, Class<T> responseClass, String candies) {
-    return sendChallenge(url, responseClass, candies, 1);
-  }
 
   public int getLastStatusCode() {
     return lastStatusCode;

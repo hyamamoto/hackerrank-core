@@ -36,41 +36,12 @@ public class AbstractMain {
     return CoreConstants.get().USERNAME();
   }
 
-  protected boolean doLogin() {
-    return doLogin((String) null, (String) null);
-  }
-
-  protected boolean doLogin(String username, String password) {
-    // LOGIN
-    username = username != null ? username : CoreConstants.get().USERNAME();
-    password = password != null ? password : CoreConstants.get().PASSWORD();
-    JsonLogin login = h.sign_in(username, password);
-    if (login == null || login.getId() == null || login.getId().isEmpty()) {
-      llog("", -1, "LOGIN", "Login Failure", login);
-      if (h.getLastStatusCode() != 200) {
-        llog("", -1, "SERVICE_UNAVAILABLE", "At login.", h.getLastStatusLine());
-      }
-      return false;
-    } else {
-      llog("", -1, "LOGIN", "Login Success", login);
-      return true;
-    }
-  }
-
   protected void doSafeLogout() {
     // NOTE: better skipping logout as this makes all other clients (even on different machine) to
     // logout
     // h.sign_out();
     // h.deleteCookie();
     llog("", -1, "LOGOUT", "Logout", null);
-  }
-
-  protected void doUserStats() {
-    // USER STATUS (this is gail, this forces user to logout?)
-    {
-      JsonUserStat stat = h.userstats();
-      llog("", -1, "STATUS", "", stat);
-    }
   }
 
   private void llog(String probKind, int probNo, String action, String message, Object data) {

@@ -1,4 +1,4 @@
-package jp.freepress.hackerrank.core;
+package jp.freepress.hackerrank.beta;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
@@ -7,7 +7,7 @@ import com.beust.jcommander.ParameterException;
 /**
  * A command line arguments parser for leader board main classes.
  * 
- * @see jp.freepress.hackerrank.SplashLeaderboardMain
+ * @see jp.freepress.hackerrank.BetaLeaderboardMain
  */
 public class LeaderboardMainArgs {
 
@@ -15,10 +15,14 @@ public class LeaderboardMainArgs {
     super();
   }
 
-  public static final String LIMIT = "-L";
-  @Parameter(names = LIMIT, description = "limit")
-  public int limit = 50;
+//  public static final String LIMIT = "-L";
+//  @Parameter(names = LIMIT, description = "limit")
+//  public int limit = 50;
 
+  public static final String OFFSET = "-O";
+  @Parameter(names = OFFSET, description = "offset")
+  public int offset = 0;
+  
   @Parameter(names = "--help", description = "Print this help", help = true)
   public boolean help;
 

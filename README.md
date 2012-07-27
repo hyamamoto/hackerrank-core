@@ -1,24 +1,29 @@
 [HackerRank Lib](http://hyamamoto.github.com/hackerrank-core), API Wrappers and Bots for HackerRank
 ==================
 
-HackerRank Lib provides a small tool set for HackerRank Sign-up Beta. This is made to aid those who have small time to write their own API wrapper to build their bot for new challenges. It's written in Java 6 and tested on Mac OS X Lion, Gentoo Linux and Windows 7. It's currently used and maintained by [higon](https://github.com/hyamamoto/hackerrank-core). Anyone is welcome to join.
+[![Build Status](https://secure.travis-ci.org/hyamamoto/hackerrank-core.png?branch=master)](http://travis-ci.org/hyamamoto/hackerrank-core)
+
+HackerRank Lib provides a small tool set for HackerRank Beta and Signup Game. This is made to aid those who have not much time to write their own API wrapper to build their bot for new challenges. It's written in Java 6 and tested on Mac OS X Lion, Gentoo Linux and Windows 7. It's currently used and maintained by [higon](https://github.com/hyamamoto/hackerrank-core) (Hiroshi Yamamoto). Anyone is welcome to modify.
 
 This kit includes:
 
 * API Wrappers and Utilities
-    * HackerRankAPI
-    * SplashAPI
+    * Splash Signup Game API
+    * Closed Beta API
 * Commandline scripts
     * Userstats command
     * Leaderboard command
     * SpaceX bot
     * Candies bot
+    * and some more.
 
 
 What Is HackerRank?
 -------------------
 
 HackerRank is a new website you can play with. Basically it's a little coding competition site. Most exciting thing about HackerRank is that it has "Hack" on its name. So we can rationally safely assume we can hack their servers at will, can we.
+
+Ya. I stop joking here.  
 
 Check out [their site](https://www.hackerrank.com/) for more detail.
 
@@ -57,21 +62,23 @@ or
 HackerRank API Wrappers
 -----------------------
 
-    Name     : HackerRank Core API  
-    Class    : jp.freepress.hackerrank.core.HackerRankAPI  
-    Includes : Calls for Sign-in, Sign-out, Sign-up, Leaderboard, User status  
-
     Name     : HackerRank Splash API  
     Class    : jp.freepress.hackerrank.splash.SplashAPI  
-    Includes : Calls for Candies and SpaceX.  
+    Includes : Calls for Sign-in, Sign-out, Sign-up, Leaderboard, User status, and Games (Candies, SpaceX)
 
-See [SampleMain.java](https://github.com/hyamamoto/hackerrank-core/blob/master/src/main/java/jp/freepress/hackerrank/SampleMain.java) or [SampleApp.scala](https://github.com/hyamamoto/hackerrank-core/blob/master/misc/scala-experiment/SampleApp.scala) for actual code.
+For SplashAPI, see [SampleMain.java](https://github.com/hyamamoto/hackerrank-core/blob/master/src/main/java/jp/freepress/hackerrank/SampleMain.java) or [SampleApp.scala](https://github.com/hyamamoto/hackerrank-core/blob/master/misc/scala-experiment/SampleApp.scala) for actual code.
+
+    Name     : HackerRank Beta API (2012/07)
+    Class    : jp.freepress.hackerrank.beta.BetaAPI  
+    Includes : Calls for Sign-in, Sign-out, Leaderboard, and Submission list
+
+BetaAPI is a wrapper based on Restful API of HackerRank Beta version that ought to be changed frequently.
 
 
 Bots
 ----
 
-Name      : **Candies bot**  
+Name      : **Splash Candies bot**  
 Main class: jp.freepress.hackerrank.SplashCandiesMain  
 Description: This is a simple "pick candies" game solver. Algorythm's as follows.
 
@@ -87,7 +94,7 @@ Usage:
     -P           A password for your username  
     -slog        Log output directory 
 
-Name      : **SpaceX bot**  
+Name      : **Splash SpaceX Bot**  
 Main class: jp.freepress.hackerrank.SplashSpaceXMain  
 Description: This is a SpaceX game solver.
 
@@ -103,8 +110,8 @@ Usage:
     -waId        Your Wolfram*Alpha APPID. This option is required to solve #11001+.  
 
 
-Name      : **Userstats**  
-Main class: jp.freepress.hackerrank.UserstatsMain  
+Name      : **Splash Userstats**  
+Main class: jp.freepress.hackerrank.SplashUserstatsMain  
 Description: This logins and gets a single user status from the rank leader board.
 
 Usage:
@@ -113,13 +120,22 @@ Usage:
     -P           A password for your username  
 
 
-Name      : **Leaderboard**  
-Main class: jp.freepress.hackerrank.LeaderboardMain  
+Name      : **Splash Leaderboard**  
+Main class: jp.freepress.hackerrank.SplashLeaderboardMain  
 Description: This retrieves a list of user statuses from the rank leader board.
 
 Usage:
 
     -L           limit
+
+
+Name      : **Beta Leaderboard**  
+Main class: jp.freepress.hackerrank.BetaLeaderboardMain  
+Description: This retrieves a list of user statuses from the rank leader board.
+
+Usage:
+
+    -O           offset
 
 
 License

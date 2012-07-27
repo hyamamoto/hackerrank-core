@@ -1,8 +1,7 @@
-package jp.freepress.hackerrank.scala
 
 import jp.freepress.hackerrank.core.HackerRankAPI
-import jp.freepress.hackerrank.core.JsonUserStat
-import jp.freepress.hackerrank.core.JsonUserStat.Util.toSimpleLineString
+import jp.freepress.hackerrank.splash.JsonUserStat
+import jp.freepress.hackerrank.splash.JsonUserStat.Util.toSimpleLineString
 import jp.freepress.hackerrank.splash.SplashAPI
 
 /**
@@ -16,12 +15,12 @@ object SampleApp {
 
     // SIGNUP
     // ======
-    // var login = api.sign_up( "a", "a@abc.com", "pass");
+    // var login = splashAPI.sign_up( "a", "a@abc.com", "pass");
     // println( login)
 
     // LOGIN
     // =====
-    var login = api.sign_in( "{USERNAME HERE}", "{PASSWORD HERE}");
+    var login = splashAPI.sign_in( "{USERNAME HERE}", "{PASSWORD HERE}");
     println( "\nLogin");
     println(login);
     if (login == null || login.getId() == null) {
@@ -57,19 +56,19 @@ object SampleApp {
 
     // USER STATUS
     // ===========
-    var userstats = api.userstats();
+    var userstats = splashAPI.userstats();
     println( "\nUSERSTATUS");
     println( toSimpleLineString(userstats));
 
     // LEADERBOARD
     // ===========
-    var leaderboard = api.leaderboard();
+    var leaderboard = splashAPI.leaderboard();
     println( "\nLEADERBOARD");
     leaderboard.getBoard().foreach( s => println( toSimpleLineString(s)));
 
     // LOGOUT
     // ======
-    api.sign_out();
+    splashAPI.sign_out();
 
   }
 }

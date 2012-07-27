@@ -1,0 +1,5 @@
+#!/bin/bash
+
+pushd ..
+java -cp "./lib/*:./hackerrank.jar" jp.freepress.hackerrank.SplashUserstatsMain $@
+popd

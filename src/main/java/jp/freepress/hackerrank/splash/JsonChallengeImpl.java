@@ -41,7 +41,7 @@ public class JsonChallengeImpl implements JsonChallenge {
   @Override
   public String toString() {
     StringBuilder builder = new StringBuilder();
-    builder.append("JsonChallengeImpl [game=");
+    builder.append("JsonChallenge [game=");
     builder.append(game);
     builder.append(", exit=");
     builder.append(exit);

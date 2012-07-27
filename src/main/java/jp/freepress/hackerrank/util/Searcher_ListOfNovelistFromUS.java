@@ -15,10 +15,11 @@ import net.htmlparser.jericho.MasonTagTypes;
 import net.htmlparser.jericho.Segment;
 import net.htmlparser.jericho.Source;
 
-// http://en.wikipedia.org/wiki/List_of_novelists_from_the_United_States
 
 /**
  * <i>List_of_novelists_from_the_United_States</i> Map from Wikipedia.
+ * 
+ * @see http://en.wikipedia.org/wiki/List_of_novelists_from_the_United_States
  */
 public class Searcher_ListOfNovelistFromUS implements WikiDicMap {
 

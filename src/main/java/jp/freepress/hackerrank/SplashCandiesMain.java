@@ -2,8 +2,8 @@ package jp.freepress.hackerrank;
 
 import java.util.logging.Logger;
 
-import jp.freepress.hackerrank.core.AbstractMain;
 import jp.freepress.hackerrank.core.Solver;
+import jp.freepress.hackerrank.splash.AbstractSplashMain;
 import jp.freepress.hackerrank.splash.JsonChallenge;
 import jp.freepress.hackerrank.splash.JsonChallengeGame;
 import jp.freepress.hackerrank.splash.JsonChallengeGameImpl;
@@ -31,7 +31,7 @@ import jp.freepress.hackerrank.splash.SplashMainArgs;
  * @author Hiroshi Yamamoto
  * @since 2012/07/05
  */
-public class SplashCandiesMain extends AbstractMain {
+public class SplashCandiesMain extends AbstractSplashMain {
 
   private static enum ArchiveResult {
     WIN, LOSE, IMCOMPLETE, ERROR, SERVICEERROR;
@@ -116,7 +116,7 @@ public class SplashCandiesMain extends AbstractMain {
     int candiesLeft;
     candiesLeft = candiesTotal;
 
-    JsonChallengeGameImpl newChallenge = h.challenge(JsonChallengeGameImpl.class, candiesTotal);
+    JsonChallengeGameImpl newChallenge = splash.challenge(JsonChallengeGameImpl.class, candiesTotal);
     if (newChallenge == null || newChallenge.getN() == 0) {
       l.log("CANDIES", candiesTotal, "QUERY_FAILED", "" + newChallenge.getN(), newChallenge);
       return ArchiveResult.ERROR;
@@ -130,7 +130,7 @@ public class SplashCandiesMain extends AbstractMain {
       boolean finito = candiesLeft == mySweeto;
       // Pick
       JsonChallenge challenge;
-      challenge = h.challengeAnswer(JsonChallengeImpl.class, mySweeto, finito ? SCALE : 1);
+      challenge = splash.challengeAnswer(JsonChallengeImpl.class, mySweeto, finito ? SCALE : 1);
       if (challenge == null || challenge.getGame() == null) {
         l.log("CANDIES", candiesTotal, "DRAW_FAILED", challenge.getMessage(), challenge);
         return ArchiveResult.ERROR;

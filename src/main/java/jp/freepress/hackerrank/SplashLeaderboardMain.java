@@ -2,10 +2,10 @@ package jp.freepress.hackerrank;
 
 import java.util.logging.Logger;
 
-import jp.freepress.hackerrank.core.AbstractMain;
-import jp.freepress.hackerrank.core.JsonLeaderBoard;
-import jp.freepress.hackerrank.core.JsonUserStat;
 import jp.freepress.hackerrank.core.LeaderboardMainArgs;
+import jp.freepress.hackerrank.splash.AbstractSplashMain;
+import jp.freepress.hackerrank.splash.JsonLeaderBoard;
+import jp.freepress.hackerrank.splash.JsonUserStat;
 
 
 /**
@@ -15,16 +15,16 @@ import jp.freepress.hackerrank.core.LeaderboardMainArgs;
  * 
  * @author Hiroshi Yamamoto
  */
-public class LeaderboardMain extends AbstractMain {
+public class SplashLeaderboardMain extends AbstractSplashMain {
 
   public static void main(String[] args) {
 
     LeaderboardMainArgs mainArgs = LeaderboardMainArgs.parseMainArgs(args);
     final int limit = Math.max(1, mainArgs.limit);
 
-    LeaderboardMain main = new LeaderboardMain();
+    SplashLeaderboardMain main = new SplashLeaderboardMain();
 
-    Logger log = createLogger(LeaderboardMain.class);
+    Logger log = createLogger(SplashLeaderboardMain.class);
 
     log.info("Leaderboard");
     log.info("===========");
@@ -32,7 +32,7 @@ public class LeaderboardMain extends AbstractMain {
     log.info("Limit: " + limit);
 
     // LEADERBOARD
-    JsonLeaderBoard leaderboard = main.h.leaderboard(limit);
+    JsonLeaderBoard leaderboard = main.splash.leaderboard(limit);
     if (leaderboard == null) {
       log.info("Failed to retrieve a leaderboard: " + main.h.getLastStatusLine());
       return;
@@ -47,7 +47,7 @@ public class LeaderboardMain extends AbstractMain {
 
   }
 
-  public LeaderboardMain() {
+  public SplashLeaderboardMain() {
     super(true);
   }
 }

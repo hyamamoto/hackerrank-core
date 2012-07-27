@@ -41,6 +41,7 @@ public class GameSolver_1_PoormanCaesar implements Solver<GameProblem, GameAnswe
         }
       }
       if (score > maxScore) {
+        maxScore = score;
         maxScoreText = a;
       }
     }

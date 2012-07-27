@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import jp.freepress.hackerrank.core.AbstractMain;
 import jp.freepress.hackerrank.core.CoreConstants;
 import jp.freepress.hackerrank.core.NeedsRetryException;
 import jp.freepress.hackerrank.core.Solver;
+import jp.freepress.hackerrank.splash.AbstractSplashMain;
 import jp.freepress.hackerrank.splash.GameAnswer;
 import jp.freepress.hackerrank.splash.GameProblem;
 import jp.freepress.hackerrank.splash.GameSolver_10001_HybridCaesar;
@@ -43,7 +43,7 @@ import com.beust.jcommander.Parameter;
  * @since 2012/07/05
  * @see CoreConstants
  */
-public class SplashSpaceXMain extends AbstractMain {
+public class SplashSpaceXMain extends AbstractSplashMain {
 
   private static enum GameResult {
     WIN, LOSE, IMCOMPLETE, ERROR, SERVICEERROR, RETRY;
@@ -178,7 +178,7 @@ public class SplashSpaceXMain extends AbstractMain {
 
   protected GameResult doGame(Solver<GameProblem, GameAnswer> solver, int gameNo) {
     // QUERY
-    List<JsonGame> games = h.<JsonGame, JsonGameImpl>games(JsonGameImpl.class, gameNo, SCALE);
+    List<JsonGame> games = splash.<JsonGame, JsonGameImpl>games(JsonGameImpl.class, gameNo, SCALE);
     List<JsonGameGame> gamegames = new ArrayList<JsonGameGame>();
     for (JsonGame game : games) {
       // Check JsonGame
@@ -227,10 +227,10 @@ public class SplashSpaceXMain extends AbstractMain {
         // POST
         JsonGameAnswerImpl result = null;
         if (gameNo >= 10001) {
-          result = h.gameAnswer(JsonGameAnswerImpl.class, gameId, answer.getText());
+          result = splash.gameAnswer(JsonGameAnswerImpl.class, gameId, answer.getText());
         } else {
           result =
-              h.gameAnswer(JsonGameAnswerImpl.class, gameId, Integer.toString(answer.getNumber()));
+              splash.gameAnswer(JsonGameAnswerImpl.class, gameId, Integer.toString(answer.getNumber()));
         }
         if (result != null && result.getExit() == 0) {
           l.log("SCIENTIST", gameNo, "RESULT_WIN", "Won. [n=" + gameNo + ", id=" + gameId + "]",

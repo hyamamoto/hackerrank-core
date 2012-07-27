@@ -1,10 +1,10 @@
-package jp.freepress.hackerrank.scala
 
 import org.apache.http.impl.client.DefaultHttpClient
 import jp.freepress.hackerrank.core.HackerRankAPI
-import jp.freepress.hackerrank.core.JsonUserStat
-import jp.freepress.hackerrank.core.JsonUserStat.Util.toSimpleLineString;
-import jp.freepress.hackerrank.core.JsonLogin
+import jp.freepress.hackerrank.splash.JsonUserStat
+import jp.freepress.hackerrank.splash.JsonUserStat.Util.toSimpleLineString;
+import jp.freepress.hackerrank.splash.JsonLogin
+import jp.freepress.hackerrank.splash.SplashAPI
 
 /**
  * @author ${user.name}
@@ -13,11 +13,12 @@ object UserStatsApp {
 
   def main(args : Array[String]) {
     var api = new HackerRankAPI();
+    var splashapi = new SplashAPI( api);
     
-    var login = api.sign_in( "{USERNAME}", "PASSWORD");
+    var login = splashapi.sign_in( "{USERNAME}", "PASSWORD");
 
     // Getting a user status
-    var stat = api.userstats;
+    var stat = splashapi.userstats;
     if ( Option(stat).isEmpty)
       return;
 

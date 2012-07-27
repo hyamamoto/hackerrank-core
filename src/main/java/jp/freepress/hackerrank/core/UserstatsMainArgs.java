@@ -7,7 +7,7 @@ import com.beust.jcommander.ParameterException;
 /**
  * A command line arguments parser for status main classes.
  * 
- * @see jp.freepress.hackerrank.UserstatsMain
+ * @see jp.freepress.hackerrank.SplashUserstatsMain
  */
 public class UserstatsMainArgs {
 

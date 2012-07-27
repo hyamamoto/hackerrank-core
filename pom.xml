@@ -4,7 +4,7 @@
 
 	<groupId>jp.freepress.hackerrank</groupId>
 	<artifactId>hackerrank-core</artifactId>
-	<version>0.1.0</version>
+	<version>0.2.0</version>
 	<packaging>jar</packaging>
 
 	<name>HackerRank Toolkit</name>
@@ -70,7 +70,7 @@
 			<version>1.27</version>
 		</dependency>
 		<dependency>
-			<groupId>jp.freepress.repo</groupId>
+	<groupId>jp.freepress.repo</groupId>
 			<artifactId>WolframAlpha</artifactId>
 			<version>1.1</version>
 		</dependency>
@@ -83,20 +83,21 @@
 The kit includes:
 
 * API Wrappers and Utilities
-    * HackerRankAPI
-    * SplashAPI
+    * Splash API
+    * Beta API
 
 * Commandline scripts
     * Userstats command
     * Leaderboard command
     * SpaceX bot
-    * Candies bot</description>
+    * Candies bot
+    * and some more</description>
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
 				<groupId>jp.freepress.hackerrank</groupId>
 				<artifactId>hackerrank-core</artifactId>
-				<version>0.1.0</version>
+				<version>0.2.0</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

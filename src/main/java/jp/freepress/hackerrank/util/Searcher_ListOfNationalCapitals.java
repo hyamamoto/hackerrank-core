@@ -15,10 +15,11 @@ import net.htmlparser.jericho.MasonTagTypes;
 import net.htmlparser.jericho.Segment;
 import net.htmlparser.jericho.Source;
 
-// http://en.wikipedia.org/wiki/List_of_national_capitals
 
 /**
- * <i>ist_of_national_capitals</i> Map from Wikipedia.
+ * <i>List_of_national_capitals</i> Map from Wikipedia.
+ * 
+ * @see http://en.wikipedia.org/wiki/List_of_national_capitals
  */
 public class Searcher_ListOfNationalCapitals implements WikiDicMap {
 

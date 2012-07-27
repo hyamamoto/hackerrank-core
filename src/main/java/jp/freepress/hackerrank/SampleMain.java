@@ -1,12 +1,12 @@
 package jp.freepress.hackerrank;
 
 import jp.freepress.hackerrank.core.HackerRankAPI;
-import jp.freepress.hackerrank.core.JsonLeaderBoard;
-import jp.freepress.hackerrank.core.JsonLogin;
-import jp.freepress.hackerrank.core.JsonUserStat;
 import jp.freepress.hackerrank.splash.JsonChallenge;
 import jp.freepress.hackerrank.splash.JsonChallengeGame;
 import jp.freepress.hackerrank.splash.JsonGame;
+import jp.freepress.hackerrank.splash.JsonLeaderBoard;
+import jp.freepress.hackerrank.splash.JsonLogin;
+import jp.freepress.hackerrank.splash.JsonUserStat;
 import jp.freepress.hackerrank.splash.SplashAPI;
 
 /**
@@ -31,7 +31,7 @@ public class SampleMain {
 
     // LOGIN
     // =====
-    JsonLogin login = coreAPI.sign_in("{USERNAME HERE}", "{PASSWORD HERE}");
+    JsonLogin login = splashAPI.sign_in("{USERNAME HERE}", "{PASSWORD HERE}");
     System.out.println(login);
     if (login == null || login.getId() == null) {
       System.out.println("Login Failed");
@@ -67,18 +67,18 @@ public class SampleMain {
 
     // USER STATUS
     // ===========
-    JsonUserStat userstats = coreAPI.userstats();
+    JsonUserStat userstats = splashAPI.userstats();
     System.out.println(userstats);
 
 
     // LEADERBOARD
     // ===========
-    JsonLeaderBoard leaderboard = coreAPI.leaderboard();
+    JsonLeaderBoard leaderboard = splashAPI.leaderboard();
     System.out.println(leaderboard);
 
     // LOGOUT
     // ======
-    coreAPI.sign_out();
+    splashAPI.sign_out();
 
   }
 

@@ -2,9 +2,9 @@ package jp.freepress.hackerrank;
 
 import java.util.logging.Logger;
 
-import jp.freepress.hackerrank.core.AbstractMain;
-import jp.freepress.hackerrank.core.JsonUserStat;
 import jp.freepress.hackerrank.core.UserstatsMainArgs;
+import jp.freepress.hackerrank.splash.AbstractSplashMain;
+import jp.freepress.hackerrank.splash.JsonUserStat;
 
 
 /**
@@ -15,15 +15,15 @@ import jp.freepress.hackerrank.core.UserstatsMainArgs;
  * @author Hiroshi Yamamoto
  * @since 2012/07/05
  */
-public class UserstatsMain extends AbstractMain {
+public class SplashUserstatsMain extends AbstractSplashMain {
 
   public static void main(String[] args) {
 
     UserstatsMainArgs mainArgs = UserstatsMainArgs.parseMainArgs(args);
 
-    UserstatsMain main = new UserstatsMain();
+    SplashUserstatsMain main = new SplashUserstatsMain();
 
-    Logger log = createLogger(UserstatsMain.class);
+    Logger log = createLogger(SplashUserstatsMain.class);
 
     log.info("UserStats");
     log.info("=========");
@@ -41,7 +41,7 @@ public class UserstatsMain extends AbstractMain {
 
 
     // USERSTATS
-    JsonUserStat stat = main.h.userstats();
+    JsonUserStat stat = main.splash.userstats();
     String statStr = JsonUserStat.Util.toSimpleLineString(stat);
     System.out.println(statStr);
 
@@ -52,7 +52,7 @@ public class UserstatsMain extends AbstractMain {
     // log.info("Logout success. bye.");
   }
 
-  public UserstatsMain() {
+  public SplashUserstatsMain() {
     super(true);
   }
 

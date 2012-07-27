@@ -1,4 +1,4 @@
-package jp.freepress.hackerrank.core;
+package jp.freepress.hackerrank.splash;
 
 import java.util.List;
 import java.util.Map;

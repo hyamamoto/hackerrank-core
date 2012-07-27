@@ -1,4 +1,4 @@
-package jp.freepress.hackerrank.core;
+package jp.freepress.hackerrank.splash;
 
 import org.apache.commons.lang3.StringUtils;
 

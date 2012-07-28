@@ -3,21 +3,21 @@ package jp.freepress.hackerrank.beta;
 import org.apache.commons.lang3.StringUtils;
 
 public final class JsonLeaderBoard {
-  
+
   private int rank;
 
   private double score;
- 
+
   private String hacker;
- 
+
   private String country;
- 
+
   private String language;
-  
+
   public JsonLeaderBoard() {
     super();
   }
-  
+
   public int getRank() {
     return rank;
   }

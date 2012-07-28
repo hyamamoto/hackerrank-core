@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import jp.freepress.hackerrank.beta.BetaAPI;
 import jp.freepress.hackerrank.splash.SplashAPI;
 
 import org.apache.http.HttpEntity;
@@ -21,6 +22,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpRequestBase;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.DefaultHttpRequestRetryHandler;
 import org.apache.http.message.BasicNameValuePair;
@@ -33,36 +35,11 @@ import org.apache.http.util.EntityUtils;
 /**
  * <p>
  * <a href="http://hackerrank.com/"><tt>HackerRank</tt></a> API wrapper.
- * <dl>
- * <dt>Account Management</dt>
- * <dd>
- * <ul>
- * <li>sign_in()</li>
- * <li>sign_out()</li>
- * <li>sign_up()</li>
- * </ul>
- * </dd>
- * <dt>Score Records</dt>
- * <dd>
- * <ul>
- * <li>userstats()</li>
- * <li>leaderboard()</li>
- * </ul>
- * </dd>
- * <dt>Server Communication (you better use {@link SplashAPI} instead)</dt>
- * <dd>
- * <ul>
- * <li>game()</li>
- * <li>gameAnswer()</li>
- * <li>challenge()</li>
- * <li>challengeAnswer()</li>
- * </ul>
- * </dd>
- * </dl>
  * </p>
  * 
  * @author Hiroshi Yamamoto
  * @see SplashAPI
+ * @see BetaAPI
  */
 public class HackerRankAPI {
 
@@ -108,7 +85,23 @@ public class HackerRankAPI {
    */
   public String send(String url, Map<String, String> param, String methodStr, int scale) {
     HttpRequestBase method = createHttpRequest(url, param, methodStr);
+    return send( method, scale);
+  }
 
+  /**
+   * Sends a request with json and retrieves a content body of its response.
+   * 
+   * @param url A target URL
+   * @param json json string to be sent
+   * @param methodStr HTTP method name. ex) "GET", "POST", "PUT", "DELETE", etc.
+   * @param scale always 1 for normal behavior. {@link HackerRankAPI} class ignores this parameter.
+   */
+  public String sendJson(String url, String json, String methodStr, int scale) {
+    HttpRequestBase method = createHttpRequestWithJson(url, json, (String)null, methodStr);
+    return send( method, scale);
+  }
+  
+  public String send(HttpRequestBase method, int scale) {
     try {
       return executeAndGetBody(method);
     } catch (ClientProtocolException e) {
@@ -156,6 +149,47 @@ public class HackerRankAPI {
     return responseBodyStr;
   }
 
+  /**
+   * @param json nullable
+   * @param charset nullable (UTF-8)
+   * @param methodStr one of { "POST", "PUT"}
+   */
+  protected HttpRequestBase createHttpRequestWithJson(String url, String json, String charset, String methodStr) {
+    HttpRequestBase httpMethod = createHttpRequest( url, null, methodStr);
+    if (methodStr != null && methodStr.equals("POST")) {
+      HttpPost postMethod = (HttpPost)httpMethod;
+      if ( json != null) {
+        try {
+          StringEntity input = charset != null ? new StringEntity(json, charset) : new StringEntity(json, "UTF-8");
+          input.setContentType("application/json");
+          postMethod.setEntity( input);
+        } catch( UnsupportedEncodingException ueex) {
+          throw new RuntimeException(ueex); // near impossible exception
+        }
+      }
+    } else if (methodStr != null && methodStr.equals("PUT")){
+      HttpPut putMethod = (HttpPut)httpMethod;
+      if ( json != null) {
+        try {
+          StringEntity input = charset != null ? new StringEntity(json, charset) : new StringEntity(json, "UTF-8");
+          input.setContentType("application/json");
+          putMethod.setEntity( input);
+        } catch( UnsupportedEncodingException ueex) {
+          throw new RuntimeException(ueex); // near impossible exception
+        }
+      }
+    } else {
+      if ( json != null) {
+        throw new IllegalArgumentException( methodStr + " doesn't support a request with json string.");
+      }
+    }
+    return httpMethod;
+  }
+  
+  /**
+   * @param param nullable
+   * @param methodStr one of {"GET", "POST", "PUT"}
+   */
   protected HttpRequestBase createHttpRequest(String url, Map<String, String> param,
       String methodStr) {
     // Create a method instance.
@@ -199,16 +233,13 @@ public class HackerRankAPI {
       method.setHeader("Origin", "http://www.hackerrank.com");
       method.setHeader("Referer", "http://www.hackerrank.com/");
       method.setHeader("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_0) "
-          + "AppleWebKit/536.11 (KHTML, like Gecko) " + "Chrome/20.0.1132.47 Safari/536.11");
+          + "AppleWebKit/536.11 (KHTML, like Gecko) " + "Chrome/20.0.1132.57 Safari/536.11");
       method.setHeader("X-Requested-With", "XMLHttpRequest");
     } catch (UnsupportedEncodingException e) {
       e.printStackTrace();
     }
     return method;
   }
-
-
-
 
   public int getLastStatusCode() {
     return lastStatusCode;

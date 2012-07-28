@@ -1,4 +1,4 @@
-package jp.freepress.hackerrank.core;
+package jp.freepress.hackerrank.splash;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;

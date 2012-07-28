@@ -4,17 +4,17 @@ import com.google.gson.JsonElement;
 
 // {"model":{"created_at":"2012-07-19T17:13:20Z","data":{},"id":1,"levels":3,"name":"Main Contest","slug":"master","updated_at":"2012-07-19T17:14:58Z"}}
 public final class JsonContestMaster {
-  
+
   private int id;
-  
+
   private String name;
-  
+
   private String levels;
-  
+
   private String slug;
- 
+
   private JsonElement data;
-  
+
   private String updated_at;
 
   private String created_at;

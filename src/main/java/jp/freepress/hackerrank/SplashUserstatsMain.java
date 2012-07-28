@@ -2,9 +2,9 @@ package jp.freepress.hackerrank;
 
 import java.util.logging.Logger;
 
-import jp.freepress.hackerrank.core.UserstatsMainArgs;
 import jp.freepress.hackerrank.splash.AbstractSplashMain;
 import jp.freepress.hackerrank.splash.JsonUserStat;
+import jp.freepress.hackerrank.splash.UserstatsMainArgs;
 
 
 /**

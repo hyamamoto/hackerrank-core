@@ -1,11 +1,11 @@
 package jp.freepress.hackerrank.beta;
 
 public final class JsonHacker {
-  
+
   private String username;
-  
+
   private String gravatar;
-  
+
   public JsonHacker() {
     super();
   }

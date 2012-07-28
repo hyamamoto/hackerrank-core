@@ -178,14 +178,46 @@ public class BetaAPI {
     return json;
   }
 
-  public JsonSubmissionList submissions(int offset) {
+  public JsonSubmissionStatusList submissions(int offset) {
     // https://{phost}/rest/submissions?offset=0&_=1343170272611
     String url = URL_SUBMISSIONS;
     url += "?offset=" + offset;
     url += _time();
     String response = api.send(url, null, "GET", 1);
-    JsonSubmissionList json = new Gson().fromJson(response, JsonSubmissionList.class);
+    JsonSubmissionStatusList json = new Gson().fromJson(response, JsonSubmissionStatusList.class);
     return json;
+  }
+
+  public JsonSubmissionHolder submission(int submissionId, int gameoffset) {
+    // https://{phost}/rest/submissions/XXXX?gameoffset=0&_=1343352462132
+    // Usually returns a list with a size of 10
+    String url = URL_SUBMISSIONS + "/" + submissionId;
+    url += "?gameoffset=" + gameoffset;
+    url += _time();
+    String response = api.send(url, null, "GET", 1);
+    JsonSubmissionHolder json = new Gson().fromJson(response, JsonSubmissionHolder.class);
+    return json;
+  }
+
+  /**
+   * Submit a code for a challenge.
+   * @deprecated implemented but UNTESTED (07/28/2012)
+   */
+  public boolean submit(int contest_id, int level, int challenge_id, String language, String code) {
+    //https://{phost}/rest/submissions
+    String url = URL_SUBMISSIONS;
+    JsonSubmission submission = new JsonSubmission();
+    {
+      submission.setContest_id(contest_id);
+      submission.setLevel(level);
+      submission.setChallenge_id(challenge_id);
+      submission.setLanguage(language);
+      submission.setCode(code);
+    }
+    String jsonStr = new Gson().toJson(submission);
+    String response = api.sendJson(url, jsonStr, "POST", 1);
+    //Response => true
+    return "true".equals(response);
   }
 
   public JsonNetworkHolder networks() {

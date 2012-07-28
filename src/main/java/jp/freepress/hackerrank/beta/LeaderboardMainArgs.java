@@ -15,14 +15,14 @@ public class LeaderboardMainArgs {
     super();
   }
 
-//  public static final String LIMIT = "-L";
-//  @Parameter(names = LIMIT, description = "limit")
-//  public int limit = 50;
+  // public static final String LIMIT = "-L";
+  // @Parameter(names = LIMIT, description = "limit")
+  // public int limit = 50;
 
   public static final String OFFSET = "-O";
   @Parameter(names = OFFSET, description = "offset")
   public int offset = 0;
-  
+
   @Parameter(names = "--help", description = "Print this help", help = true)
   public boolean help;
 

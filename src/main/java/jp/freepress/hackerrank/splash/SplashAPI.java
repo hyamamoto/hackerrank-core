@@ -15,6 +15,21 @@ import com.google.gson.Gson;
  * HackerRank API Wrapper. <br/>
  * This covers the two games on HackerRank pre-beta challenges.
  * <dl>
+ * <dt>Account Management</dt>
+ * <dd>
+ * <ul>
+ * <li>sign_in()</li>
+ * <li>sign_out()</li>
+ * <li>sign_up()</li>
+ * </ul>
+ * </dd>
+ * <dt>Score Records</dt>
+ * <dd>
+ * <ul>
+ * <li>userstats()</li>
+ * <li>leaderboard()</li>
+ * </ul>
+ * </dd>
  * <dt>SpaceX</dt>
  * <dd>
  * <ul>
@@ -29,9 +44,18 @@ import com.google.gson.Gson;
  * <li>candiesAnswer()</li>
  * </ul>
  * </dd>
+ * <dt>Others</dt>
+ * <dd>
+ * <ul>
+ * <li>game()</li>
+ * <li>gameAnswer()</li>
+ * <li>challenge()</li>
+ * <li>challengeAnswer()</li>
+ * </ul>
+ * </dd>
  * </dl>
  * </p>
- * All the methods are using {@link HackerRankAPI}'s lower level methods to communicate with the
+ * All methods are using {@link HackerRankAPI}'s lower level methods to communicate with a
  * server.
  * 
  * @author Hiroshi Yamamoto

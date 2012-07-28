@@ -1,6 +1,6 @@
 package jp.freepress.hackerrank.beta;
 
-// {"model":{"username":"higon","gravatar":"https://secure.gravatar.com/avatar/45805b656732c3d2ace1de67edd01b8f?d=https://ferrari.interviewstreet.com/challenges/noimage.png&s=25"}}
+// {"model":{"username":"XXXX","gravatar":"https://secure.gravatar.com/avatar/XXXX?d=https://ferrari.interviewstreet.com/challenges/noimage.png&s=25"}}
 
 /**
  * A class for a wrapper of a hacker JSON text.

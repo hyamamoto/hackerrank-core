@@ -12,9 +12,9 @@ import java.util.Arrays;
 public final class JsonLeaderBoardList {
 
   private int total;
-  
+
   private int page;
-  
+
   private JsonLeaderBoard[] models;
 
   public JsonLeaderBoardList() {

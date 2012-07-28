@@ -5,19 +5,19 @@ package jp.freepress.hackerrank.beta;
 public final class JsonNetwork {
 
   private int id;
-  
+
   private String username;
 
   private String school;
-  
+
   private String country;
-  
+
   private String company;
-  
+
   private String languages;
-  
+
   private String uid; // null
-  
+
   public JsonNetwork() {
     super();
   }

@@ -20,5 +20,5 @@ public final class JsonChallengeHolder {
   public void setModel(JsonChallenge model) {
     this.model = model;
   }
-  
+
 }

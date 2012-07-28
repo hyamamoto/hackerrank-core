@@ -45,6 +45,8 @@ public class HackerRankAPI {
 
   public static final String URL_HACKERRANK = "https://www.hackerrank.com";
 
+  private static final boolean STDOUT_HTTP_RESPONSE = false; // for debug
+
   protected int lastStatusCode; // concurrency? what's that?
   // be used only on the same thread.
   protected String lastStatusLine; // concurrency? what's that?
@@ -127,7 +129,7 @@ public class HackerRankAPI {
     int statusCode = response.getStatusLine().getStatusCode();
     lastStatusCode = statusCode;
 
-    if (statusCode != HttpStatus.SC_OK && statusCode != HttpStatus.SC_CREATED) {
+    if (statusCode != HttpStatus.SC_OK && statusCode != HttpStatus.SC_CREATED && statusCode != HttpStatus.SC_MOVED_TEMPORARILY) {
       Logger log = Logger.getLogger(HackerRankAPI.class.getName());
       String statusLine = response.getStatusLine().toString();
       lastStatusLine = statusLine;
@@ -145,6 +147,10 @@ public class HackerRankAPI {
     // Use caution: ensure correct character encoding and is not binary data
     String responseBodyStr = new String(responseBody);
     //String responseBodyStr = EntityUtils.toString(entity, "UTF-8");
+   
+    if ( STDOUT_HTTP_RESPONSE) {
+      System.out.println( responseBodyStr);
+    }
     
     return responseBodyStr;
   }

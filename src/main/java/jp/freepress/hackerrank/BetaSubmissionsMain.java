@@ -40,7 +40,7 @@ public class BetaSubmissionsMain extends AbstractMain {
           + "\"}. use -U option or --help for more help.");
       return;
     }
-    log.info("Login success.");
+    log.info("Login processed.");
 
     // Submissions
     int offset = mainArgs.offset;

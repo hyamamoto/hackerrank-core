@@ -1,12 +1,13 @@
 package jp.freepress.hackerrank.beta;
 
-// looks like "game" property is malformed sometimes its is a string not an array of strings,
+import java.util.Arrays;
 
-public final class JsonSubmissionGameData {
+
+public final class JsonSubmissionGameData_Alt {
 
   private String created_at;
 
-  private String game;
+  private String game[];
 
   private int id;
 
@@ -28,7 +29,7 @@ public final class JsonSubmissionGameData {
 
   private String updated_at;
 
-  public JsonSubmissionGameData() {
+  public JsonSubmissionGameData_Alt() {
     super();
   }
 
@@ -40,11 +41,11 @@ public final class JsonSubmissionGameData {
     this.created_at = created_at;
   }
 
-  public String getGame() {
+  public String[] getGame() {
     return game;
   }
 
-  public void setGame(String game) {
+  public void setGame(String[] game) {
     this.game = game;
   }
 
@@ -129,10 +130,10 @@ public final class JsonSubmissionGameData {
   }
 
   public final static class Util {
-    public static StringBuilder appendGameData( StringBuilder buf, JsonSubmissionGameData gamedata) {
+    public static StringBuilder appendGameData( StringBuilder buf, JsonSubmissionGameData_Alt gamedata) {
       buf.append("Game(" + gamedata.getId() + ")\n");
       buf.append("----------\n");
-      String game = gamedata.getGame();
+      String game = Arrays.toString(gamedata.getGame());
       String message = gamedata.getMessage();
       buf.append("Players: ").append( gamedata.getPlayer1_username()).append(", ").append( gamedata.getPlayer2_username()).append("\n");
       String winner;

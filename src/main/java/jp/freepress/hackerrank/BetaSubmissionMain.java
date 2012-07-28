@@ -45,7 +45,7 @@ public class BetaSubmissionMain extends AbstractMain {
           + "\"}. use -U option or --help for more help.");
       return;
     }
-    log.info("Login success.");
+    log.info("Login processed.");
 
     // Submissions
     int gameoffset = mainArgs.gameoffset;
@@ -72,26 +72,7 @@ public class BetaSubmissionMain extends AbstractMain {
           buf.append("Games.Total : ").append(model.getGame_played()).append("\n");
           for ( JsonSubmissionGameData gamedata: gamedataArray) {
             buf.append("\n");
-            buf.append("Game(" + gamedata.getId() + ")\n");
-            buf.append("----------\n");
-            String game = gamedata.getGame();
-            String message = gamedata.getMessage();
-            buf.append("Players: ").append( gamedata.getPlayer1_username()).append(", ").append( gamedata.getPlayer2_username()).append("\n");
-            String winner;
-            switch( gamedata.getResult()) {
-              case 1:
-                winner = gamedata.getPlayer1_username();
-                break;
-              case 2:
-                winner = gamedata.getPlayer2_username();
-                break;
-              default:
-                winner = "-";
-                break;
-            }
-            buf.append("Result : ").append(winner).append(" (").append(gamedata.getResult()).append(")\n");
-            buf.append("Message: " + message).append("\n");
-            buf.append("Game   : " + game).append("\n");
+            JsonSubmissionGameData.Util.appendGameData(buf, gamedata);
           }
         }
         System.out.println(buf);
@@ -111,8 +92,8 @@ public class BetaSubmissionMain extends AbstractMain {
   public BetaSubmissionMain() {
     super(true);
   }
-
-  protected boolean doLogin(BetaAPI api, String username, String password) {
+  
+ protected boolean doLogin(BetaAPI api, String username, String password) {
     // LOGIN
     username = username != null ? username : CoreConstants.get().USERNAME();
     password = password != null ? password : CoreConstants.get().PASSWORD();

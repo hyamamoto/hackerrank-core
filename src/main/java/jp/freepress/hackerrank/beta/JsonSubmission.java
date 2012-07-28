@@ -42,7 +42,7 @@ public final class JsonSubmission {
   public JsonSubmission() {
     super();
   }
-
+  
   public int getChallenge_id() {
     return challenge_id;
   }

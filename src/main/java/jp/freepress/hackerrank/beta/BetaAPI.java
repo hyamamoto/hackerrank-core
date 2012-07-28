@@ -199,15 +199,40 @@ public class BetaAPI {
     return json;
   }
 
-  /**
-   * Submit a code for a challenge.
-   * @deprecated implemented but UNTESTED (07/28/2012)
-   */
-  public boolean submit(int contest_id, int level, int challenge_id, String language, String code) {
+  public JsonSubmissionTestResultHolder compile_and_test(int contest_id, int level, int challenge_id, String language, String code) {
     //https://{phost}/rest/submissions
     String url = URL_SUBMISSIONS;
-    JsonSubmission submission = new JsonSubmission();
+    JsonSubmissionCode submission = new JsonSubmissionCode();
     {
+      submission.setId(0);
+      submission.setContest_id(contest_id);
+      submission.setLevel(level);
+      submission.setChallenge_id(challenge_id);
+      submission.setLanguage(language);
+      submission.setCode(code);
+    }
+    String jsonStr = new Gson().toJson(submission);
+    String response = api.sendJson(url, jsonStr, "PUT", 1);
+
+    // EXPERIMENTAL ERROR HANDLING: We're sorry, but something went wrong (500)
+    if ( response != null && response.indexOf("<!DOCTYPE html") != -1) {
+      System.err.println("ERROR: Received a HTML document.\n" + response);
+    }
+   
+    JsonSubmissionTestResultHolder json = new Gson().fromJson(response, JsonSubmissionTestResultHolder.class);
+    return json;
+  }
+  /**
+   * Submit a code for a challenge.
+   * @deprecated UNTESTED (07/28/2012)
+   * @see #compile_and_test(int, int, int, String, String)
+   */
+  public boolean submit_code(int contest_id, int level, int challenge_id, String language, String code) {
+    //https://{phost}/rest/submissions
+    String url = URL_SUBMISSIONS;
+    JsonSubmissionCode submission = new JsonSubmissionCode();
+    {
+      //submission.setId(id);
       submission.setContest_id(contest_id);
       submission.setLevel(level);
       submission.setChallenge_id(challenge_id);

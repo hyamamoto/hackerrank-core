@@ -121,14 +121,32 @@ public class BetaAPI {
    * @return A leader board object.
    */
   public JsonLeaderBoardList leaderboard(int offset, int limit) {
+    return leaderboard(offset, limit, (LeaderBoardCategory)null, null);
+  }
+  
+  /**
+   * Retrieves the leader board information from the server.
+   * 
+   * @param limit a limit count. <i>the hard limit on the server looks to be 763. (2012/07/06) </i>
+   * @param offset a offset ( offset > 0 )
+   * @param category A category of the leaderboard to be retrieved
+   * @param categoryValue 
+   * @return A leader board object.
+   */
+  public JsonLeaderBoardList leaderboard(int offset, int limit, LeaderBoardCategory category, String categoryValue) {
     // https://{phost}/rest/leaderboard?offset=0&_=1343170094503
-    String url = URL_LEADERBOARD;
+    // https://{phost}/rest/leaderboard/?network=true&kind=level&value=6&offset=0&_=1343700794632
+    String url = URL_LEADERBOARD; 
     if (limit < 0) {
       limit = 20;
     }
     url += "?offset=" + offset;
     if (limit > 0) {
       url += "&limit=" + limit;
+    }
+    if ( category != null && categoryValue != null) {
+      url += "&network=" + true; // this is unknown parameter, but necessary for any category grouping.
+      url += "&kind=" + category.getId() + "&value=" + categoryValue;
     }
     url += _time();
     String response = api.send(url, null, "GET", 1);
@@ -287,3 +305,6 @@ public class BetaAPI {
 
 // https://{phost}/rest/challenges_activities?level=1&_=1343168607393
 // {"models":[],"total":0}
+
+// https://{phost}/rest/networks?_=1343700795096
+// {"model":{"school":"","country":"Japan","company":"","languages":"scala","id":45,"username":"higon","uid":null,"suggestions":[{"name":"","hackers":[]},{"name":"","hackers":[]}]}}

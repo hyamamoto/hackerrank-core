@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import jp.freepress.hackerrank.beta.BetaAPI;
 import jp.freepress.hackerrank.beta.JsonLeaderBoard;
 import jp.freepress.hackerrank.beta.JsonLeaderBoardList;
+import jp.freepress.hackerrank.beta.LeaderBoardCategory;
 import jp.freepress.hackerrank.beta.LeaderboardMainArgs;
 import jp.freepress.hackerrank.core.AbstractMain;
 
@@ -21,6 +22,8 @@ public class BetaLeaderboardMain extends AbstractMain {
 
     LeaderboardMainArgs mainArgs = LeaderboardMainArgs.parseMainArgs(args);
     final int offset = Math.max(0, mainArgs.offset);
+    final LeaderBoardCategory category = mainArgs.category;
+    final String categoryValue = mainArgs.categoryValue;
 
     BetaLeaderboardMain main = new BetaLeaderboardMain();
 
@@ -34,7 +37,7 @@ public class BetaLeaderboardMain extends AbstractMain {
     BetaAPI betaAPI = new BetaAPI( main.h);
 
     // LEADERBOARD
-    JsonLeaderBoardList leaderboard = betaAPI.leaderboard( offset, 50);
+    JsonLeaderBoardList leaderboard = betaAPI.leaderboard( offset, 50, category, categoryValue);
     if (leaderboard == null) {
       log.info("Failed to retrieve a leaderboard: " + main.h.getLastStatusLine());
       return;

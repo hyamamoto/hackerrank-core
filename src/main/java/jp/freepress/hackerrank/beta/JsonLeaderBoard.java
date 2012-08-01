@@ -9,6 +9,8 @@ public final class JsonLeaderBoard {
   private double score;
 
   private String hacker;
+  
+  private int level;
 
   private String country;
 
@@ -42,6 +44,14 @@ public final class JsonLeaderBoard {
     this.hacker = hacker;
   }
 
+  public int getLevel() {
+    return level;
+  }
+
+  public void setLevel(int level) {
+    this.level = level;
+  }
+
   public String getCountry() {
     return country;
   }
@@ -63,14 +73,16 @@ public final class JsonLeaderBoard {
       StringBuilder builder = new StringBuilder();
       builder.append("[");
       builder.append(StringUtils.leftPad(Integer.toString(stat.rank), 4));
-      builder.append("] ");
+      builder.append("], ");
       builder.append(StringUtils.rightPad(stat.hacker, 18));
+      builder.append(", ");
+      builder.append(StringUtils.rightPad( "lv." + stat.level, 5));
       builder.append(",");
       builder.append(StringUtils.leftPad(Double.toString(stat.score), 8));
       builder.append(" pt");
       builder.append(stat.score <= 1d ? " , " : "s, ");
-      builder.append(StringUtils.rightPad(stat.language, 10));
-      builder.append(",");
+      builder.append(StringUtils.rightPad(Language.toLanguageName(stat.language), 7));
+      builder.append(", ");
       builder.append(StringUtils.rightPad(stat.country, 16));
       return builder.toString();
     }

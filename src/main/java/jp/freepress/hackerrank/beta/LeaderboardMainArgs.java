@@ -23,6 +23,12 @@ public class LeaderboardMainArgs {
   @Parameter(names = OFFSET, description = "offset")
   public int offset = 0;
 
+  public static final String CATEGORYNAMEVALUE = "-C";
+  @Parameter(names = CATEGORYNAMEVALUE, description = "A pair of a category name and its value. (eg. -C language:python")
+  public String categoryNameValue;
+  public LeaderBoardCategory category;
+  public String categoryValue;
+
   @Parameter(names = "--help", description = "Print this help", help = true)
   public boolean help;
 
@@ -35,11 +41,26 @@ public class LeaderboardMainArgs {
         jCommander.usage();
         System.exit(0);
       }
+      
+      if ( argsObj.categoryNameValue != null && !argsObj.categoryNameValue.isEmpty()) {
+        int colonIndex = argsObj.categoryNameValue.indexOf(":");
+        if (colonIndex  == -1) {
+          System.err.println("You must specify -C option in a format \"{CATEGORY_NAME}:{CATEGORY_VALUE}\"");
+          System.exit(1);
+        }
+        String categoryName = argsObj.categoryNameValue.substring(0, colonIndex);
+        LeaderBoardCategory category = LeaderBoardCategory.match( categoryName);
+        if (category == null) {
+          System.err.println("Unknown category [" + categoryName + "]. The category name must be one of ( " + LeaderBoardCategory.toCategoryIdListString() + ")");
+          System.exit(1);
+        }
+        argsObj.category = category;
+        argsObj.categoryValue = argsObj.categoryNameValue.substring( colonIndex + 1, argsObj.categoryNameValue.length());
+      }
     } catch (ParameterException ex) {
       System.err.println(ex.getMessage() + "\n(Use \"--help\" option for more information.)");
       System.exit(1);
     }
     return argsObj;
   }
-
 }

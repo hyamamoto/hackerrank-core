@@ -263,10 +263,11 @@ public class BetaAPI {
     return "true".equals(response);
   }
 
-  public JsonNetworkHolder networks() {
+  public JsonNetworkHolder networks( String username) {
     // https://{phost}/rest/networks?_=1343168607404
+    // https://{phost}/rest/networks/?username=XXXX&_=1343976695410
     String url = URL_NETWORKS;
-    url += "?a" + _time();
+    url += "/?username=" + username + _time();
     String response = api.send(url, null, "GET", 1);
     JsonNetworkHolder json = new Gson().fromJson(response, JsonNetworkHolder.class);
     return json;
@@ -297,6 +298,9 @@ public class BetaAPI {
   }
 
 }
+
+// https://{phost}/rest/follow
+// 405 error
 
 // https://{phost}/rest/network_leaderboard?_=1343168607374
 // {"models":[]}

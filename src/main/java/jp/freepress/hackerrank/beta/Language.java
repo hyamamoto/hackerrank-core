@@ -1,5 +1,9 @@
 package jp.freepress.hackerrank.beta;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 public enum Language {
   C("c", "C"), //
   Cpp("cpp", "C++"), //
@@ -54,4 +58,18 @@ public enum Language {
     return lang == null ? languageIdOrName: lang.langName;
   }
 
+  /**
+   * @return A name of the language. A parameter value will be returned if the language with that name is not found.
+   */
+  public static List<String> toLanguageNames( String languageIdsOrNames) {
+    @SuppressWarnings("resource")
+    Scanner scanner = new Scanner( languageIdsOrNames);
+    scanner.useDelimiter(",");
+    List<String> languageNames = new ArrayList<String>();
+    while( scanner.hasNext()) {
+      String langName = toLanguageName( scanner.next().trim());
+      languageNames.add( langName);
+    }
+    return languageNames;
+  }
 }

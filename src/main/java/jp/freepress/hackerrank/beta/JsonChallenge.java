@@ -1,5 +1,6 @@
 package jp.freepress.hackerrank.beta;
 
+
 public final class JsonChallenge {
 
   private int id;
@@ -45,4 +46,5 @@ public final class JsonChallenge {
   public void setBody(String body) {
     this.body = body;
   }
+
 }

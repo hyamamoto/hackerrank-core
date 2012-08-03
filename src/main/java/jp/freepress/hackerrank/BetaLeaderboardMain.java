@@ -8,6 +8,7 @@ import jp.freepress.hackerrank.beta.JsonLeaderBoardList;
 import jp.freepress.hackerrank.beta.LeaderBoardCategory;
 import jp.freepress.hackerrank.beta.LeaderboardMainArgs;
 import jp.freepress.hackerrank.core.AbstractMain;
+import jp.freepress.hackerrank.core.CoreConstants;
 
 /**
  * <p>
@@ -35,6 +36,15 @@ public class BetaLeaderboardMain extends AbstractMain {
     log.info("Offset: " + offset);
     
     BetaAPI betaAPI = new BetaAPI( main.h);
+    
+    // LOGIN
+    log.info("Logging in...");
+    if (!main.doLogin( betaAPI, mainArgs.username, mainArgs.password)) {
+      log.info("Login failed for { username: \""
+          + (mainArgs.username == null ? "" : mainArgs.username)
+          + "\"}. use -U option or --help for more help.");
+      return;
+    }
 
     // LEADERBOARD
     JsonLeaderBoardList leaderboard = betaAPI.leaderboard( offset, 50, category, categoryValue);
@@ -62,4 +72,20 @@ public class BetaLeaderboardMain extends AbstractMain {
   public BetaLeaderboardMain() {
     super(true);
   }
+
+  // XXX: there's a duplicated method at BetaSubmissionsMain
+  protected boolean doLogin(BetaAPI api, String username, String password) {
+    // LOGIN
+    username = username != null ? username : CoreConstants.get().USERNAME();
+    password = password != null ? password : CoreConstants.get().PASSWORD();
+    api.login(username, password);
+    if (h.getLastStatusCode() != 200 && h.getLastStatusCode() != 302) {
+      l.log("", -1, "LOGIN", "Login Failure", null);
+      // l.log("", -1, "SERVICE_UNAVAILABLE", "At login.", h.getLastStatusLine());
+      return false;
+    } else {
+      l.log("", -1, "LOGIN", "Login Success", null);
+      return true;
+    }
+  }  
 }

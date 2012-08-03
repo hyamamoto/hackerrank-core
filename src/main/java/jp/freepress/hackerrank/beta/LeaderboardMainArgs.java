@@ -14,6 +14,14 @@ public class LeaderboardMainArgs {
   public LeaderboardMainArgs() {
     super();
   }
+  
+  public static final String USERNAME = "-U";
+  @Parameter(names = USERNAME, description = "Your username. Use with -P option.", required=true)
+  public String username = null;
+
+  public static final String PASSWORD = "-P";
+  @Parameter(names = PASSWORD, description = "A password for your username")
+  public String password = null;
 
   // public static final String LIMIT = "-L";
   // @Parameter(names = LIMIT, description = "limit")
@@ -40,6 +48,12 @@ public class LeaderboardMainArgs {
       if (argsObj.help) {
         jCommander.usage();
         System.exit(0);
+      }
+
+      String username = argsObj.username;
+      if ((username != null && !username.isEmpty()) && argsObj.password == null) {
+        System.out.print("A password for the username (" + username + "): ");
+        argsObj.password = new String(JCommander.getConsole().readPassword(false));
       }
       
       if ( argsObj.categoryNameValue != null && !argsObj.categoryNameValue.isEmpty()) {
